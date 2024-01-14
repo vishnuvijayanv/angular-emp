@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" row container   mt-5" style="height: 600px;">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4 mt-5">
+            <form #loginform="ngForm" (ngSubmit)="login()"  class=" border shadow p-5 w-100">
+                <h3 class="text-center">Login Now</h3>
+    
+                <input  type="text" class="form-control mb-3 mt-3"  placeholder="enter your Email" #useremail="ngModel" required email [(ngModel)]="email" name="mail">
+                <span class="text-danger" *ngIf="useremail.invalid && useremail.touched">Invalid Email </span>
+
+                <input type="text" class="form-control mb-3"  placeholder="enter Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required  [(ngModel)]="password" name="password" #userpswd="ngModel">
+                <span class="text-danger" *ngIf="userpswd.invalid && userpswd.touched" >Invalid password </span>
+    
+                <button type="submit" [disabled]="loginform.invalid" class="btn btn-success mt-5 text-dark" >Login</button>
+                <p class="mt-4">Don't have an account? <a routerLink="/register">Register</a></p>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            <img src="https://www.iwave.com/wp-content/uploads/2022/01/iwave-support-client-success-manager.png" width="100%" alt="">
+    
+        </div>
+        <div class="col-lg-1"></div>
+    
+    
+    
+    </div>
+</div>

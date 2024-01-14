@@ -1,0 +1,65 @@
+<div>
+    <div class="row">
+        <div class="col-lg-2  d-flex flex-column p-5" style="height: 720px; background-color:  #001f3f;">
+            <a routerLink="/dashboard" class="mb-3" style="text-decoration: none; color: white; font-size: 22px;"><i class="fa-solid fa-house me-2"></i>Home</a>
+            <a  routerLink="/employees" style="text-decoration: none; color: blue;font-size: 22px;"><i class="fa-solid fa-user me-2"></i>Users</a>
+        </div>
+        <div class="col-lg-10 p-5" style="    background: linear-gradient(135deg, #370AE6, #DDF79D);
+        ">
+            <div class="row">
+               <div class="col-lg-12 d-flex justify-content-between">
+                    <h3>Users List</h3>
+                    <a routerLink="/employee/add" class="btn btn-outline-secondary"><i class="fa-solid fa-user-plus"></i>Add</a>
+               </div>
+               <div class="col-lg-12 d-flex justify-content-between mt-4">
+                <div class="d-flex">
+                    <input type="text" placeholder="Username" class="form-control me-3" style="width: 400px;">
+                    <!-- Example single danger button -->
+<div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      
+    </ul>
+  </div>
+
+                </div>
+                
+                <button class="btn btn-success">Export</button>
+               </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <table class="table table-bordered border-primary">
+                        <thead>
+                          <tr>
+                            <th scope="col">User ID</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>
+                              <a routerLink="/employee/edit/:id"  class="btn btn-outline-secondary me-3"><i class="fa-solid fa-pencil"></i>
+                              </a>
+                                <button  class="btn btn-outline-danger text-danger"><i class="fa-solid fa-trash fa-danger"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+      
+        </div>
+    </div>
+</div>
