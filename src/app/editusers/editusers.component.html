@@ -4,34 +4,39 @@
      <a routerLink="/dashboard" class="mb-3" style="text-decoration: none; color: white; font-size: 22px;"><i class="fa-solid fa-house me-2"></i>Home</a>
      <a  routerLink="/employees" style="text-decoration: none; color: blue;font-size: 22px;"><i class="fa-solid fa-user me-2"></i>Users</a>
  </div>
-<div class="col-lg-10" style="    background: linear-gradient(135deg, #370AE6, #DDF79D);
-">
+<div class="col-lg-10">
 
- <h2 class="text-center mt-5"><i class="fa-solid fa-user-plus me-2"></i>Edit Employee</h2>
+ <h2 class="text-center mt-5"><i class="fa-solid fa-user-plus me-2"></i>Update Employee</h2>
 
 <div class="row mt-5">
      <div class="col-lg-3"></div>
+     
      <div class="col-lg-6 border shadow p-5 ">
-         <Form>
-             <input type="text" class="form-control mb-2" placeholder="userId">
-             <input type="text" class="form-control mb-2" placeholder="username">
-             <input type="text" class="form-control mb-2" placeholder="Email">
-            
+         <Form >
+             <input type="text" class="form-control mb-2" placeholder="userId" name="emid" [(ngModel)]="employee.id" required pattern="[0-9]" #employeeid="ngModel">
+             <span class="text-danger" *ngIf="employeeid.invalid && employeeid.touched">Invalid userId </span>
+             <input type="text" class="form-control mb-2" placeholder="username" name="uname" [(ngModel)]="employee.name" required pattern="^[a-zA-Z]{3,}$"  #empname="ngModel">
+             <span class="text-danger" *ngIf="empname.invalid && empname.touched">Invalid username </span>
+
+             <input  type="text" class="form-control mb-3 mt-3"  placeholder="enter your Email" #useremail="ngModel" required email [(ngModel)]="employee.email" name="mail">
+             <span class="text-danger" *ngIf="useremail.invalid && useremail.touched">Invalid Email </span>
+             
+
            
              <div class="dropdown">
-                 <a class="btn btn-light border dropdown-toggle w-100 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding-left: 470px;">
-                  Status
-                 </a>
-               
-                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                   <li><a class="dropdown-item" href="#">Active</a></li>
-                   <li><a class="dropdown-item" href="#">Inactive</a></li>
-                 </ul>
+                 <label for="cars">Choose Status</label>
+                 <select name="empstatus" required [(ngModel)]="employee.status"  style="padding-left: 450px; border-radius: 5px; height: 35px;" name="cars" id="cars" #empstatus="ngModel">
+                   <option value="1">Active</option>
+                   <option value="0">Inactive</option>
+                 </select>
+                 <span class="text-danger" *ngIf="empstatus.invalid && empstatus.touched">Invalid status </span>
+
                </div>   
                
               <div>
-                 <button class="btn btn-danger mt-5 me-4">cancel </button>
-                 <button class="btn btn-success mt-5">ADD </button>
+                 <button (click)="cancelBtn(employee.id)" class="btn btn-danger mt-5 me-4">cancel </button>
+                 <button type="
+                 submit" class="btn btn-success mt-5" (click)="editEmployee(employee.id,$event)">Update </button>
              </div>
          </Form>
      </div>

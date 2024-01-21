@@ -11,26 +11,31 @@
    <div class="row mt-5">
         <div class="col-lg-3"></div>
         <div class="col-lg-6 border shadow p-5 ">
-            <Form>
-                <input type="text" class="form-control mb-2" placeholder="userId">
-                <input type="text" class="form-control mb-2" placeholder="username">
-                <input type="text" class="form-control mb-2" placeholder="Email">
-               
+            <Form (submit)="onSubmit($event)">
+                <input type="text" class="form-control mb-2" placeholder="userId" name="emid" [(ngModel)]="employee.id" required pattern="[0-9]{1,3}" #employeeid="ngModel">
+                <span class="text-danger" *ngIf="employeeid.invalid && employeeid.touched">Invalid userId </span>
+                <input type="text" class="form-control mb-2" placeholder="username" name="uname" [(ngModel)]="employee.name" required pattern="^[a-zA-Z]{3,}$"  #empname="ngModel">
+                <span class="text-danger" *ngIf="empname.invalid && empname.touched">Invalid username </span>
+
+                <input  type="text" class="form-control mb-3 mt-3"  placeholder="enter your Email" #useremail="ngModel" required email [(ngModel)]="employee.email" name="mail">
+                <span class="text-danger" *ngIf="useremail.invalid && useremail.touched">Invalid Email </span>
+                
+
               
                 <div class="dropdown">
-                    <a class="btn btn-light border dropdown-toggle w-100 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="padding-left: 470px;">
-                     Status
-                    </a>
-                  
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Active</a></li>
-                      <li><a class="dropdown-item" href="#">Inactive</a></li>
-                    </ul>
+                    <label for="cars">Choose Status</label>
+                    <select name="empstatus" required [(ngModel)]="employee.status"  style="padding-left: 450px; border-radius: 5px; height: 35px;" name="cars" id="cars" #empstatus="ngModel">
+                      <option value="1">Active</option>
+                      <option value="0">Inactive</option>
+                    </select>
+                    <span class="text-danger" *ngIf="empstatus.invalid && empstatus.touched">Invalid status </span>
+
                   </div>   
                   
                  <div>
-                    <button class="btn btn-danger mt-5 me-4">cancel </button>
-                    <button class="btn btn-success mt-5">ADD </button>
+                    <button class="btn btn-danger mt-5 me-4" (click)="cancelEmployee">cancel </button>
+                    <button type="
+                    submit" class="btn btn-success mt-5">ADD </button>
                 </div>
             </Form>
         </div>

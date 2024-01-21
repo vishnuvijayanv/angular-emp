@@ -13,22 +13,22 @@
                </div>
                <div class="col-lg-12 d-flex justify-content-between mt-4">
                 <div class="d-flex">
-                    <input type="text" placeholder="Username" class="form-control me-3" style="width: 400px;">
+                    <input type="text" name="searchKey" [(ngModel)]="searchKey" placeholder="Username" class="form-control me-3" style="width: 400px;">
                     <!-- Example single danger button -->
 <div class="btn-group">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       Sort
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" (click)="sortId()">By id</a></li>
+      <li><a class="dropdown-item" (click)="sortName()" > By Name</a></li>
       
     </ul>
   </div>
 
                 </div>
                 
-                <button class="btn btn-success">Export</button>
+                <button (click)="generatePdf()" class="btn btn-success">Export</button>
                </div>
             </div>
             <div class="row mt-4">
@@ -44,17 +44,22 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                          <tr *ngFor="let employee of allEmployee | search:searchKey | paginate:{ itemsPerPage:5, currentPage: p}"
+                          [hidden]="employee.id=='1'">
+                            <th scope="row">{{employee.id}}</th>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.email}}</td>
+                            <td><span [ngClass]="employee.status=='1'?'btn btn-success':'btn btn-warning'">{{employee.status=='1'?'Active':'Inactive'}}</span></td>
                             <td>
-                              <a routerLink="/employee/edit/:id"  class="btn btn-outline-secondary me-3"><i class="fa-solid fa-pencil"></i>
+                              <a routerLink="/employee/edit/{{employee.id}}"  class="btn btn-outline-secondary me-3"><i class="fa-solid fa-pencil"></i>
                               </a>
-                                <button  class="btn btn-outline-danger text-danger"><i class="fa-solid fa-trash fa-danger"></i></button>
+                                <button (click)="removeEmployee(employee.id)" class="btn btn-outline-danger text-danger"><i class="fa-solid fa-trash fa-danger"></i></button>
                             </td>
                           </tr>
+                          <pagination-controls                              (pageChange)="p=$event"
+                          >
+                          </pagination-controls>
+                     
                         </tbody>
                       </table>
                 </div>

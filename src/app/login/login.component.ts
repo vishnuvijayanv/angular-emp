@@ -25,12 +25,13 @@ export class LoginComponent {
           const {email ,password} = res
           if (email == this.email && password == this.password) {
             alert('login successfull')
+            this.router.navigateByUrl('/dashboard')
+
 
             
           }
           else{
             alert('invalid email orr password')
-            this.router.navigateByUrl('/dashboard')
           }
 
         },
